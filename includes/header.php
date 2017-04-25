@@ -20,6 +20,20 @@ else {
 <html>
 <head>
 	<title>Welcome to IUSocial</title>
+  <style>
+    .logobutton {
+      cursor: pointer;
+      display: block;
+      margin:  0 auto; 
+      opacity: 1.0;
+      border: 0;
+      background: transparent;
+      position: fixed;
+    }
+    .logobutton:hover {
+      opacity: 0.5;
+    }
+  </style>
 
 	<!-- Javascript -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -41,7 +55,9 @@ else {
 	<div class="top_bar"> 
 
 		<div class="logo">
-			<a href="index.php">IUSocial!</a>
+    <Button class="logobutton" onclick="window.location.href='index.php'">
+			<img src="assets/images/icons/secondlogo.png" style="margin-left: 5px; height: 42px;"/>
+    </Button>
 		</div>
 
 
@@ -85,10 +101,12 @@ else {
 			<a href="<?php echo $userLoggedIn; ?>">
 				<?php echo $user['first_name']; ?>
 			</a>
+      &nbsp;&nbsp;&nbsp;&nbsp;
 			<!-- Can replace the below texts as icons and vice versa-->
 			<a href="index.php">
 				<i class="fa fa-home fa-lg"></i>
 			</a>
+      &nbsp;&nbsp;&nbsp;&nbsp;
 			<span ondblclick="window.location='messages.php'">
 			<a href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'message')">
 				<i class="fa fa-envelope fa-lg"></i>
@@ -98,6 +116,7 @@ else {
 				?>
 			</a>
 			</span>
+      &nbsp;&nbsp;&nbsp;&nbsp;
 			<!-- <a href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'message')">
 				<i class="fa fa-envelope fa-lg"></i>
 				<?php
@@ -112,6 +131,7 @@ else {
 				 echo '<span class="notification_badge" id="unread_notification">' . $num_notifications . '</span>';
 				?>
 			</a>
+      &nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="requests.php">
 				<i class="fa fa-users fa-lg"></i>
 				<?php
@@ -119,9 +139,11 @@ else {
 				 echo '<span class="notification_badge" id="unread_requests">' . $num_requests . '</span>';
 				?>
 			</a>
+      &nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="settings.php">
 				<i class="fa fa-cog fa-lg"></i>
 			</a>
+      &nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="includes/handlers/logout.php">
 				<i class="fa fa-sign-out fa-lg"></i>
 			</a>

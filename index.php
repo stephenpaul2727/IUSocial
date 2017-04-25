@@ -9,17 +9,20 @@ if(isset($_POST['post'])){
 
 
  ?>
+<head>
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+</head>
 	<div class="user_details column">
 		<a href="<?php echo $userLoggedIn; ?>">  <img src="<?php echo $user['profile_pic']; ?>"> </a>
 
 		<div class="user_details_left_right">
-			<a href="<?php echo $userLoggedIn; ?>">
+			<a style="text-align:center;font-size: 17px;font-weight: bold;" href="<?php echo $userLoggedIn; ?>">
 			<?php 
 			echo $user['first_name'] . " " . $user['last_name'];
 
 			 ?>
 			</a>
-			<br>
+			<br><br/>
 			<?php echo "Posts: " . $user['num_posts']. "<br>"; 
 			echo "Likes: " . $user['num_likes'];
 
@@ -32,13 +35,11 @@ if(isset($_POST['post'])){
 		<form class="post_form" action="index.php" method="POST">
 			<textarea name="post_text" id="post_text" placeholder="Got something to say?"></textarea>
 			<input type="submit" name="post" id="post_button" value="Post">
-			<hr>
-
 		</form>
-
-		<div class="posts_area"></div>
-		<img id="loading" src="assets/images/icons/loading.gif">
-
+    <hr style="background-color: #efefef;margin-left:-10px;height: 20px;width:103%">
+		<div class="posts_area">
+    </div>
+		<img style="display:block; margin:auto;" id="loading" src="assets/images/icons/loading.gif">
 
 	</div>
 
@@ -91,7 +92,6 @@ if(isset($_POST['post'])){
 			return false;
 
 		}); //End (window).scroll(function())
-
 
 	});
 

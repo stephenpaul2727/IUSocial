@@ -21,7 +21,6 @@ a {
 .top_bar {
 	width: 100%;
 	min-width: 1050px;
-	height: 40px;
 	/*background-color: #20aae5; Crimson - #7c091f ; Blue - #20aae5*/
 	background-color: #7c091f; /*Crimson - #7c091f ; Blue - #20aae5*/
 	border-bottom: 0.25em solid #1894ca;
@@ -31,6 +30,7 @@ a {
 	display: inline-flex;
 	position: fixed;
 	z-index: 10;
+  height: 50px;
 }
 
 .logo a{
@@ -52,6 +52,7 @@ a:hover {
 
 nav {
 	float: right;
+  top: 5px;
 	right: 1px;
 	position: absolute;
 	margin: 10px;
@@ -59,20 +60,22 @@ nav {
 
 nav a{
 	position: relative;
+  opacity:0.6;
 	color: #fff;
 	text-decoration: none;
 	font-size: 17px;
 }
 
 nav a:hover {
-	border-bottom: 7px solid #e67e22;
+  opacity: 1.0;
+/*	border-bottom: 7px solid #e67e22;*/
 	color: #fff;
 }
 
 /*Update this for expanding the margins of the page*/
 .wrapper {
 	margin: 0 auto;
-	top: 50px;
+	top: 60px;
 	position: relative;
 	padding: 0 10px;
 	/*width: 75%;*/
@@ -92,26 +95,29 @@ nav a:hover {
 
 .user_details {
 	/*width: 250px;*/
-	width: 275px;
+	width: 375px;
+  position:fixed;
+  left:5;
 	float: left;
 	margin-bottom: 20px;
 }
 
 .user_details img {
-	height: 120px;
+	height: 180px;
 	border-radius: 5px;
 	margin-right: 5px;
 }
 
 .user_details_left_right {
-	width: 120px;
+	width: 160px;
 	display: inline-table;
+  text-align: center;
 	position: absolute;
 }
 
 .main_column {
 	float:right;
-	width: 70%;
+	width: 72%;
 	z-index: -1;
 	/*min-height: 170px;*/
 	min-height: 160px;
@@ -127,22 +133,23 @@ nav a:hover {
 	border-radius: 3px;
 	margin-right: 5px;
 	border: 1px solid #D3D3D3;
-	font-size: 12px;
+	font-size: 15px;
 	padding: 5px;
 }
 
 textarea:focus {
 	outline: 0;
+  border: 1px solid #afcbf7;
 }
 
 .post_form input[type="submit"] {
-	width: 11%;
-	height: 60px;
+	width: 8%;
+	height: 30px;
 	border: none;
 	border-radius: 3px;
 	/*background-color: #3498db;*/
 	background-color: #7c091f;
-	font-family: 'Bellota-BoldItalic', sans-serif;
+	font-family: 'Quicksand', sans-serif;
 	/*color: #1E75CA;*/
 	color: #d9d9d9;
 	/*text-shadow: #73B6E2 0.5px 0.5px 0px;*/
@@ -150,6 +157,7 @@ textarea:focus {
 	font-size: 100%;
 	position: absolute;
 	outline: 0;
+  top:25;
 	margin: 0;
 }
 
@@ -207,7 +215,7 @@ textarea:focus {
 	height: 35px;
 	margin-top: 3px;
 	position: absolute;
-	font-family: 'Bellota-BoldItalic', sans-serif;
+	font-family: 'Quicksand', sans-serif;
 	/*text-shadow: #73B6E2 0.5px 0.5px 0px;*/
 	/*background-color: #3498db;*/
 	background-color: #7c091f;
@@ -218,25 +226,27 @@ textarea:focus {
 
 .newsfeedPostOptions {
 	padding: 0px;
+  border: none;
 	text-decoration: none;
 	/*color:#20AAE5;*/
 	color: #7c091f;
-	border:none;
+  border:none;
 }
 
 .newsfeedPostOptions iframe {
-	border: 0px;
-	height: 17px;
+  border: 0px;
+	height: 15px;
 	width: 120px;
 }
 
 .comment_like {
 	background-color: transparent;
-	border: none;
+  cursor: pointer;
+  border: none;
 	font-size: 16px;
 	/*color: #3498db;*/
 	color: #7c091f;
-	padding: 0;
+	padding: 0px;
 	height: auto;
 	width: auto;
 	margin: 0;
@@ -248,31 +258,32 @@ textarea:focus {
 }
 
 .profile_left {
-	top: -10px;
-	width: 17%;
+	width: 22%;
+  top: 35px;
 	max-width: 240px;
 	min-width: 130px;
-	height: 100%;
 	float: left;
 	position: relative;
-	background-color: #37B0E9;
-	border-right: 10px solid #83D6FE;
+	background-color: #84cded;
 	color: #CBEAF8;
-	margin-right: 20px;
+  height: 100%;
+  position: fixed;
 }
 
 .profile_left img {
 	min-width: 80px;
+  left: 25;
 	width: 55%;
-	margin: 20px;
-	border: 5px solid #83D6FE;
-	border-radius: 100px;
+	margin: 30px;
+  border: 3px solid black;
 }
 
 .profile_info {
 	display: list-item;
-	background-color: #2980b9;
+	background-color: #efefef;
+  border: 2px solid grey;
 	width: 100%;
+  color: #000000;
 	padding: 10px 0 10px 0;
 }
 
@@ -344,7 +355,7 @@ textarea:focus {
 
 .profile_main_column {
 	min-width: 675px;
-	float: left;
+	float: right;
 	width: 70%;
 	z-index: -1;
 
@@ -472,7 +483,7 @@ textarea:focus {
 
 .dropdown_data_window {
     background-color: #fff;
-    border: 1px solid #DADADA;
+    border: 1px solid #000000;
     border-radius: 0 0 8px 8px;
     border-top: none;
     width: 300px;
@@ -520,15 +531,15 @@ textarea:focus {
 }
 
 .search {
-	margin: 8px 0 0 15%;
+	margin: 10px 0 0 20%;
 }
 
 .search #search_text_input {
 	border: thin solid #E5E5E5;
   	float: left;
-  	height: 23px;
+  	height: 30px;
   	outline: 0;
-  	width: 100px;
+  	width: 180px;
   	border-top-right-radius: 0;
   	border-bottom-right-radius: 0;
   	border-top-left-radius: 3px;
@@ -540,7 +551,7 @@ textarea:focus {
   	border: thin solid #e5e5e5;
   	cursor: pointer;
   	float: left;
-  	height: 23px;
+  	height: 30px;
   	text-align: center;
   	width: 50px;
   	border-top-right-radius: 3px;
@@ -548,7 +559,7 @@ textarea:focus {
 }
 
 .button_holder img {
-	margin-top: 1px;
+	margin-top: 4px;
     width: 20px;
 }
 

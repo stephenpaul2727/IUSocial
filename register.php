@@ -81,8 +81,8 @@ require 'includes/form_handlers/login_handler.php';
 					<input type="submit" name="login_button" value="Login">
 					<!-- <input type="submit" id="forgot_password" name="forgot_password" value="Forgot Password"> -->
 					<br>
-					<a href="#" id="signup" class="signup">Need and account? Register here!</a><br>
-					<a href="#" id="forgot_password" class="forgot_password">Forgot Password? Reset your password!</a>
+					<a href="#" id="signup" style="font-family: 'Quicksand', sans-serif;" class="signup">Need and account? Register here!</a><br>
+					<a href="#" id="forgot_password" style="font-family: 'Quicksand', sans-serif;" class="forgot_password">Forgot Password? Reset your password!</a>
 
 				</form>
 
@@ -195,9 +195,9 @@ require 'includes/form_handlers/login_handler.php';
 					<?php if(in_array("Your title must be between 2 and 20 characters<br>", $error_array)) echo "Your title must be between 2 and 20 characters<br>"; ?>
 
 
-					<input type="radio" name="reg_type" value="Professor" > Professor
+					<input type="radio" style="color:#efefef;" name="reg_type" value="Professor" > Professor
 
-					<input type="radio" name="reg_type" value="Student" > Student
+					<input type="radio" style="color:#efefef;" name="reg_type" value="Student" > Student
 
 					<!-- <input type="radio" name="reg_type" value="Professor" > Professor -->
   					<!-- <input type="radio" name="reg_type" value="Student"> Student -->
