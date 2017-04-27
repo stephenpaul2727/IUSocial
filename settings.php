@@ -12,24 +12,32 @@ include("includes/form_handlers/settings_handler.php");
 	<br>
 	<a href="upload.php">Upload new profile picture</a> <br><br><br>
 
-	Modify the values and click 'Update Details'
+	Modify the values and click 'Update Details'<br>
 
 	<?php
-	$user_data_query = mysqli_query($con, "SELECT first_name, last_name, email FROM users WHERE username='$userLoggedIn'");
+	$user_data_query = mysqli_query($con, "SELECT first_name, last_name, email, title, about, project FROM users WHERE username='$userLoggedIn'");
 	$row = mysqli_fetch_array($user_data_query);
 
 	$first_name = $row['first_name'];
 	$last_name = $row['last_name'];
 	$email = $row['email'];
+	$title = $row['title'];
+	$about = $row['about'];
+	$project = $row['project'];
 	?>
 
 	<form action="settings.php" method="POST">
 		First Name: <input type="text" name="first_name" value="<?php echo $first_name; ?>" id="settings_input"><br>
 		Last Name: <input type="text" name="last_name" value="<?php echo $last_name; ?>" id="settings_input"><br>
 		Email: <input type="text" name="email" value="<?php echo $email; ?>" id="settings_input"><br>
-
+		Title:<input type="text" name="title" value="<?php echo $title; ?>" id="settings_input"><br>
+		About:<br>
+		<textarea rows="4" cols="35" name="about" placeholder="Enter text here..."><?php echo $about; ?></textarea>
+		<br>
+		Project:<br>
+		<textarea rows="4" cols="35" name="project" placeholder="Enter text here..."><?php echo $project; ?></textarea>
 		<?php echo $message; ?>
-
+		<br>
 		<input type="submit" name="update_details" id="save_details" value="Update Details" class="info settings_submit"><br>
 	</form>
 
