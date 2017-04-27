@@ -50,5 +50,4 @@ include("includes/header.php"); //Header
 
 	?>
 
-
 </div>
