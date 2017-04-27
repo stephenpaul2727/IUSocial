@@ -9,6 +9,7 @@ if(isset($_GET['profile_username'])) {
 	$user_array = mysqli_fetch_array($user_details_query);
 
 	$num_friends = (substr_count($user_array['friend_array'], ",")) - 1;
+  $profile_user_obj = new User($con, $username);
 }
 
 
@@ -30,7 +31,7 @@ if(isset($_POST['post_message'])) {
   if(isset($_POST['message_body'])) {
     $body = mysqli_real_escape_string($con, $_POST['message_body']);
     $date = date("Y-m-d H:i:s");
-    $message_obj->sendMessage($username, $body, $date);
+    $message_obj->sendMessage($username, 'none', $body, $date);
   }
 
   $link = '#profileTabs a[href="#messages_div"]';
@@ -54,17 +55,31 @@ if(isset($_POST['post_message'])) {
  	</style>
 	
  	<div class="profile_left">
- 		<img src="<?php echo $user_array['profile_pic']; ?>">
+ 		<img align="middle" src="<?php echo $user_array['profile_pic']; ?>">
+    <h3 style="text-align:center"><?php echo $user_array['first_name'] . " " . $user_array['last_name']; ?></h3>
 
  		<div class="profile_info">
- 			<p><?php echo "Posts: " . $user_array['num_posts']; ?></p>
- 			<p><?php echo "Likes: " . $user_array['num_likes']; ?></p>
- 			<p><?php echo "Friends: " . $num_friends ?></p>
+			<p><?php echo "Introduction:" ?>
+		      <br>
+		      <p><?php echo "Studies  " . $user_array['title']; ?></p>
+		      <br>
+		      <p><?php echo $user_array['about']; ?></p>
+		      <br>
+ 		      <p><?php echo "Friends: " . $num_friends ?></p>
+      <?php  
+      if($userLoggedIn != $username) {
+        echo '<div style="text-align:center" class="profile_info_bottom">';
+          echo $profile_user_obj->getMutualFriends($username) . " Mutual friends";
+        echo '</div>';
+      }
+
+      ?>
+
  		</div>
 
  		<form action="<?php echo $username; ?>" method="POST">
  			<?php 
- 			$profile_user_obj = new User($con, $username); 
+ 			// $profile_user_obj = new User($con, $username); 
  			if($profile_user_obj->isClosed()) {
  				header("Location: user_closed.php");
  			}
@@ -91,16 +106,6 @@ if(isset($_POST['post_message'])) {
  		</form>
  		<input type="submit" class="deep_blue" data-toggle="modal" data-target="#post_form" value="Post Something">
 
-    <?php  
-    if($userLoggedIn != $username) {
-      echo '<div class="profile_info_bottom">';
-        echo $logged_in_user_obj->getMutualFriends($username) . " Mutual friends";
-      echo '</div>';
-    }
-
-
-    ?>
-
  	</div>
 
 
@@ -108,6 +113,7 @@ if(isset($_POST['post_message'])) {
 
     <ul class="nav nav-tabs" role="tablist" id="profileTabs">
       <li role="presentation" class="active"><a href="#newsfeed_div" aria-controls="newsfeed_div" role="tab" data-toggle="tab">Newsfeed</a></li>
+      <li role="presentation"><a href="#about_div" aria-controls="about_div" role="tab" data-toggle="tab">About</a></li>
       <li role="presentation"><a href="#messages_div" aria-controls="messages_div" role="tab" data-toggle="tab">Messages</a></li>
     </ul>
 
@@ -117,16 +123,40 @@ if(isset($_POST['post_message'])) {
         <div class="posts_area"></div>
         <img id="loading" src="assets/images/icons/loading.gif">
       </div>
+      
+      <div role="tabpanel" class="tab-pane fade" id="about_div">
+          <table>
+            <tr>
+              <td>Title:</td>
+              <td></td>
+              <td><?php echo $user_array['title']; ?>
+              </td>
+            </tr>
+            <tr>
+              <td>About:</td>
+              <td></td>
+              <td>
+                <textarea name = "about_field" cols=40  rows=3><?php echo $user_array['about']; ?></textarea></td>
+            </tr>
+            <tr>
+              <td>Projects:</td>
+              <td></td>
+              <td>
+                <textarea name = "project_field" cols=40  rows=3><?php echo $user_array['project']; ?></textarea>
+              </td>
+            </tr>
+          </table>
 
+      </div>
 
       <div role="tabpanel" class="tab-pane fade" id="messages_div">
         <?php  
         
 
-          echo "<h4>You and <a href='" . $username ."'>" . $profile_user_obj->getFirstAndLastName() . "</a></h4><hr><br>";
+          echo "<h4>You and <a href='profile.php?profile_username=" . $username ."'>" . $profile_user_obj->getFirstAndLastName() . "</a></h4><hr><br>";
 
           echo "<div class='loaded_messages' id='scroll_messages'>";
-            echo $message_obj->getMessages($username);
+            echo $message_obj->getMessages($username, 'none');
           echo "</div>";
         ?>
 
