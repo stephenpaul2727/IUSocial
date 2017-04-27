@@ -147,7 +147,7 @@ if (isset($_POST['x'])){
 
 		//Insert image into database
 		$insert_pic_query = mysqli_query($con, "UPDATE users SET profile_pic='$result_path' WHERE username='$userLoggedIn'");
-		header("Location: ".$userLoggedIn);
+		header("Location:profile.php?profile_username=".$userLoggedIn);
 														
 }// post x
 ?>
