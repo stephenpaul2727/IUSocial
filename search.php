@@ -108,10 +108,10 @@ else {
 
 
 					<div class='result_profile_pic'>
-						<a href='" . $row['username'] ."'><img src='". $row['profile_pic'] ."' style='height: 100px;'></a>
+						<a href='profile.php?profile_username=" . $row['username'] ."'><img src='". $row['profile_pic'] ."' style='height: 100px;'></a>
 					</div>
 
-						<a href='" . $row['username'] ."'> " . $row['first_name'] . " " . $row['last_name'] . "
+						<a href='profile.php?profile_username=" . $row['username'] ."'> " . $row['first_name'] . " " . $row['last_name'] . "
 						<p id='grey'> " . $row['username'] ."</p>
 						</a>
 						<br>
