@@ -4,7 +4,7 @@ include("includes/header.php");
 
 if(isset($_POST['post'])){
 	$post = new Post($con, $userLoggedIn);
-	$post->submitPost($_POST['post_text'], 'none');
+	$post->submitPost($_POST['post_text'], 'none', 'none');
 }
 
 
@@ -13,14 +13,11 @@ if(isset($_POST['post'])){
 <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
 </head>
 	<div class="user_details column">
-		<a href="<?php echo $userLoggedIn; ?>">  <img src="<?php echo $user['profile_pic']; ?>"> </a>
+		<a href="<?php echo "profile.php?profile_username=".$userLoggedIn; ?>">  <img src="<?php echo $user['profile_pic']; ?>"> </a>
 
 		<div class="user_details_left_right">
-			<a style="text-align:center;font-size: 17px;font-weight: bold;" href="<?php echo $userLoggedIn; ?>">
-			<?php 
-			echo $user['first_name'] . " " . $user['last_name'];
-
-			 ?>
+			<a href="<?php echo "profile.php?profile_username=".$userLoggedIn; ?>" style="text-align:center;font-size: 17px;font-weight: bold;">
+			<?php echo $user['first_name'] . " " . $user['last_name'];?>
 			</a>
 			<br><br/>
 			<?php echo "Posts: " . $user['num_posts']. "<br>"; 
@@ -35,6 +32,8 @@ if(isset($_POST['post'])){
 		<form class="post_form" action="index.php" method="POST">
 			<textarea name="post_text" id="post_text" placeholder="Got something to say?"></textarea>
 			<input type="submit" name="post" id="post_button" value="Post">
+			<hr>
+
 		</form>
     <hr style="background-color: #efefef;margin-left:-10px;height: 20px;width:103%">
 		<div class="posts_area">
@@ -93,6 +92,7 @@ if(isset($_POST['post'])){
 
 		}); //End (window).scroll(function())
 
+
 	});
 
 	</script>
@@ -100,6 +100,6 @@ if(isset($_POST['post'])){
 
 
 
-	</div>
+	<!-- </div> -->
 </body>
 </html>
