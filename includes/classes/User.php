@@ -13,6 +13,10 @@ class User {
 		return $this->user['username'];
 	}
 
+	public function getUserArray() {
+		return $this->user;
+	}
+
 	public function getNumberOfFriendRequests() {
 		$username = $this->user['username'];
 		$query = mysqli_query($this->con, "SELECT * FROM friend_requests WHERE user_to='$username'");
@@ -20,39 +24,43 @@ class User {
 	}
 
 	public function getNumPosts() {
-		$username = $this->user['username'];
-		$query = mysqli_query($this->con, "SELECT num_posts FROM users WHERE username='$username'");
-		$row = mysqli_fetch_array($query);
-		return $row['num_posts'];
+		// $username = $this->user['username'];
+		// $query = mysqli_query($this->con, "SELECT num_posts FROM users WHERE username='$username'");
+		// $row = mysqli_fetch_array($query);
+		// return $row['num_posts'];
+		return $this->user['num_posts'];
 	}
 
 	public function getFirstAndLastName() {
-		$username = $this->user['username'];
-		$query = mysqli_query($this->con, "SELECT first_name, last_name FROM users WHERE username='$username'");
-		$row = mysqli_fetch_array($query);
-		return $row['first_name'] . " " . $row['last_name'];
+		// $username = $this->user['username'];
+		// $query = mysqli_query($this->con, "SELECT first_name, last_name FROM users WHERE username='$username'");
+		// $row = mysqli_fetch_array($query);
+		// return $row['first_name'] . " " . $row['last_name'];
+		return $this->user['first_name'] . " " . $this->user['last_name'];
 	}
 
 	public function getProfilePic() {
-		$username = $this->user['username'];
-		$query = mysqli_query($this->con, "SELECT profile_pic FROM users WHERE username='$username'");
-		$row = mysqli_fetch_array($query);
-		return $row['profile_pic'];
+		// $username = $this->user['username'];
+		// $query = mysqli_query($this->con, "SELECT profile_pic FROM users WHERE username='$username'");
+		// $row = mysqli_fetch_array($query);
+		// return $row['profile_pic'];
+		return $this->user['profile_pic'];
 	}
 
 	public function getFriendArray() {
-		$username = $this->user['username'];
-		$query = mysqli_query($this->con, "SELECT friend_array FROM users WHERE username='$username'");
-		$row = mysqli_fetch_array($query);
-		return $row['friend_array'];
+		// $username = $this->user['username'];
+		// $query = mysqli_query($this->con, "SELECT friend_array FROM users WHERE username='$username'");
+		// $row = mysqli_fetch_array($query);
+		// return $row['friend_array'];
+		return $this->user['friend_array'];
 	}
 
 	public function isClosed() {
-		$username = $this->user['username'];
-		$query = mysqli_query($this->con, "SELECT user_closed FROM users WHERE username='$username'");
-		$row = mysqli_fetch_array($query);
+		// $username = $this->user['username'];
+		// $query = mysqli_query($this->con, "SELECT user_closed FROM users WHERE username='$username'");
+		// $row = mysqli_fetch_array($query);
 
-		if($row['user_closed'] == 'yes')
+		if($this->user['user_closed'] == 'yes')
 			return true;
 		else 
 			return false;
@@ -134,7 +142,46 @@ class User {
 	}
 
 
+	public function getFriendsList() {
+		$userProfile = $this->user['username'];
+		$return_string = "";
+		$convos = array();
 
+		// $query = mysqli_query($this->con, "SELECT friend_array FROM users WHERE username='$userProfile' ORDER BY id DESC");
+
+		// $row = mysqli_fetch_array($query)
+		// $pieces = explode(" ", $row['friend_array']);
+		$convos = explode(",", $this->user['friend_array']);
+
+		foreach($convos as $username) {
+			if ($username !=''){
+				$user_found_obj = new User($this->con, $username);
+
+				$return_string .= "<div class='row friendsDisplay'>
+					<a href='profile.php?profile_username=" . $username. "' style='color: #1485BD'>
+						<div class='col-md-3 friendListProfilePic'>
+							<img src='" . $user_found_obj->getProfilePic() ."'>
+						</div>
+
+						<div class='col-md-6 friendNameDisplay'>
+							" . $user_found_obj->getFirstAndLastName() . "
+						</div>
+					</a>
+					</div>";
+
+
+
+				// $return_string .= "<a href='profile.php?profile_username='" . $username. "><div class='user_found_messages'>
+				// 					<img src='" . $user_found_obj->getProfilePic() . "' style='border-radius: 5px; margin-right: 5px;'>
+				// 					" . $user_found_obj->getFirstAndLastName() . "
+				// 					</div>
+				// 					</a><hr><br>";
+			}
+		}
+
+		return $return_string;
+
+	}
 
 }
 
