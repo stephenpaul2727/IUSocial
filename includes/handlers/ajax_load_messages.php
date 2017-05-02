@@ -2,6 +2,7 @@
 include("../../config/config.php");
 include("../classes/User.php");
 include("../classes/Message.php");
+include("../classes/Groups.php");
 
 $limit = 7; //Number of messages to load
 

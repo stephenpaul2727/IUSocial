@@ -1,6 +1,7 @@
 <?php
 include("../../config/config.php");
 include("../../includes/classes/User.php");
+include("../classes/Groups.php");
 
 $query = $_POST['query'];
 $userLoggedIn = $_POST['userLoggedIn'];
@@ -29,7 +30,7 @@ if($query != ""){
 		// 	$mutual_friends == "";
 
 		echo "<div class='resultDisplay'>
-				<a href='" . $row['username'] . "' style='color: #1485BD'>
+				<a href='profile.php?profile_username=" . $row['username'] . "' style='color: #1485BD'>
 					<div class='liveSearchProfilePic'>
 						<img src='" . $row['profile_pic'] ."'>
 					</div>
