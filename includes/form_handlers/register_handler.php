@@ -383,7 +383,10 @@ if(isset($_POST['register_button'])){
 			else if ($rand == 2)
 				$profile_pic = "assets/images/profile_pics/defaults/head_belize_hole.png";
 
-			$query = mysqli_query($con, "INSERT INTO users VALUES ('', '$fname', '$lname', '$username', '$em', '$password', '$date', '$profile_pic', '0', '0', 'no', ',', '$title', '$type')");
+			$query = mysqli_query($con, "INSERT INTO users VALUES ('', '$fname', '$lname', '$username', '$em', '$password', '$date', '$profile_pic', '0', '0', 'no', ',', '$title', '$type','','')");
+			if ($type=='Student'){
+				$add_friend_query = mysqli_query($con, "UPDATE groups SET users_array=CONCAT(users_array, '$username,'), num_users = num_users+1  WHERE group_name='IU_Global_Forum'");
+			}
 
 			array_push($error_array, "<span style='color: #14C800;'>You're all set! Go ahead and login!</span><br>");
 			//Clear session variables 
