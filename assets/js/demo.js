@@ -28,6 +28,40 @@ $(document).ready(function() {
 
 	});
 
+	//Button for group post
+	$('#submit_group_post').click(function(){
+		$.ajax({
+			type: "POST",
+			url: "includes/handlers/ajax_submit_group_post.php",
+			data: $('form.profile_post').serialize(),
+			success: function(msg) {
+				$("#post_form").modal('hide');
+				location.reload();
+			},
+			error: function() {
+				alert('Failure');
+			}
+		});
+
+	});
+
+	//Button for profile post
+	$('#submit_create_group').click(function(){
+		$.ajax({
+			type: "POST",
+			url: "includes/handlers/ajax_create_group.php",
+			data: $('form.create_group_form').serialize(),
+			success: function(msg) {
+				$("#create_group_div").modal('hide');
+				location.reload();
+			},
+			error: function() {
+				alert('Failure');
+			}
+		});
+
+	});
+
 
 });
 
@@ -118,6 +152,7 @@ function getLiveSearchUsers(value, user) {
 	});
 
 }
+
 
 
 
