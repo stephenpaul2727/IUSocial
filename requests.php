@@ -1,10 +1,25 @@
 <?php
 include("includes/header.php"); //Header 
 ?>
+<div class="user_details column">
+		<a href="<?php echo "profile.php?profile_username=".$userLoggedIn; ?>">  <img src="<?php echo $user['profile_pic']; ?>"> </a>
+
+		<div class="user_details_left_right">
+			<a href="<?php echo "profile.php?profile_username=".$userLoggedIn; ?>" style="text-align:center;font-size: 17px;font-weight: bold;">
+			<?php echo $user['first_name'] . " " . $user['last_name'];?>
+			</a>
+			<br><br/>
+			<?php echo "<b>Title:</b><br> " . $user['title']. "<br>"; 
+			echo "<br><b>About:</b><br> " . $user['about'];
+
+			?>
+		</div>
+
+	</div>
 
 <div class="main_column column" id="main_column">
 
-	<h4>Friend Requests</h4>
+	<h4><b>Friend Requests</b></h4>
 
 	<?php  
 
@@ -49,5 +64,6 @@ include("includes/header.php"); //Header
 	}
 
 	?>
+
 
 </div>
