@@ -3,16 +3,32 @@ include("includes/header.php");
 include("includes/form_handlers/settings_handler.php");
 ?>
 
+<div class="user_details column">
+		<a href="<?php echo "profile.php?profile_username=".$userLoggedIn; ?>">  <img src="<?php echo $user['profile_pic']; ?>"> </a>
+
+		<div class="user_details_left_right">
+			<a href="<?php echo "profile.php?profile_username=".$userLoggedIn; ?>" style="text-align:center;font-size: 17px;font-weight: bold;">
+			<?php echo $user['first_name'] . " " . $user['last_name'];?>
+			</a>
+			<br><br/>
+			<?php echo "<b>Title:</b><br> " . $user['title']. "<br>"; 
+			echo "<br><b>About:</b><br> " . $user['about'];
+
+			?>
+		</div>
+
+	</div>
+
 <div class="main_column column">
 
-	<h4>Account Settings</h4>
+	<h4><b>Account Settings</b></h4>
 	<?php
 	echo "<img src='" . $user['profile_pic'] ."' class='small_profile_pic'>";
 	?>
 	<br>
 	<a href="upload.php">Upload new profile picture</a> <br><br><br>
 
-	Modify the values and click 'Update Details'<br>
+	<b>Modify the values and click 'Update Details'</b><br>
 
 	<?php
 	$user_data_query = mysqli_query($con, "SELECT first_name, last_name, email, title, about, project FROM users WHERE username='$userLoggedIn'");
@@ -41,7 +57,7 @@ include("includes/form_handlers/settings_handler.php");
 		<input type="submit" name="update_details" id="save_details" value="Update Details" class="info settings_submit"><br>
 	</form>
 
-	<h4>Change Password</h4>
+	<h4><b>Change Password</b></h4>
 	<form action="settings.php" method="POST">
 		Old Password: <input type="password" name="old_password" id="settings_input"><br>
 		New Password: <input type="password" name="new_password_1" id="settings_input"><br>
@@ -52,7 +68,7 @@ include("includes/form_handlers/settings_handler.php");
 		<input type="submit" name="update_password" id="save_details" value="Update Password" class="info settings_submit"><br>
 	</form>
 
-	<h4>Close Account</h4>
+	<h4><b>Close Account</b></h4>
 	<form action="settings.php" method="POST">
 		<input type="submit" name="close_account" id="close_account" value="Close Account" class="danger settings_submit">
 	</form>
