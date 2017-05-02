@@ -26,19 +26,17 @@ if(isset($_POST['post_message'])) {
 
  ?>
 
+ 
  <div class="user_details column">
 		<a href="<?php echo "profile.php?profile_username=".$userLoggedIn; ?>">  <img src="<?php echo $user['profile_pic']; ?>"> </a>
 
-		<div class="user_details_left_right">
-			<a href="<?php echo "profile.php?profile_username=".$userLoggedIn; ?>">
-			<?php 
-			echo $user['first_name'] . " " . $user['last_name'];
-
-			 ?>
+		<div class="user_details_left_right">		
+			<a href="<?php echo "profile.php?profile_username=".$userLoggedIn; ?>" style="text-align:center;font-size: 17px;font-weight: bold;">
+			<?php echo $user['first_name'] . " " . $user['last_name'];?>
 			</a>
-			<br>
-			<?php echo "Posts: " . $user['num_posts']. "<br>"; 
-			echo "Likes: " . $user['num_likes'];
+			<br><br/>
+			<?php echo "<b>Title:</b><br> " . $user['title']. "<br>"; 
+			echo "<br><b>About:</b><br> " . $user['about'];
 
 			?>
 		</div>
@@ -47,7 +45,7 @@ if(isset($_POST['post_message'])) {
 	<div class="main_column column" id="main_column">
 		<?php  
 		if($user_to != "new"){
-			echo "<h4>You and <a href='$user_to'>" . $user_to_obj->getFirstAndLastName() . "</a></h4><hr><br>";
+			echo "<h4>You and <a href='profile.php?profile_username=" . $user_to ."'>" . $user_to_obj->getFirstAndLastName() . "</a></h4><hr><br>";
 
 			echo "<div class='loaded_messages' id='scroll_messages'>";
 				echo $message_obj->getMessages($user_to, 'none');
