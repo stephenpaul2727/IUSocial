@@ -25,28 +25,25 @@ include("includes/header.php");
 // }
 
  ?>
-
  	<div class="user_details column">
 		<a href="<?php echo "profile.php?profile_username=".$userLoggedIn; ?>">  <img src="<?php echo $user['profile_pic']; ?>"> </a>
 
 		<div class="user_details_left_right">
 			<a href="<?php echo "profile.php?profile_username=".$userLoggedIn; ?>" style="text-align:center;font-size: 17px;font-weight: bold;">
-			<?php 
-			echo $user['first_name'] . " " . $user['last_name'];
-
-			 ?>
+			<?php echo $user['first_name'] . " " . $user['last_name'];?>
 			</a>
-			<br>
-			<?php echo "Posts: " . $user['num_posts']. "<br>"; 
-			echo "Likes: " . $user['num_likes'];
+			<br><br/>
+			<?php echo "<b>Title:</b><br> " . $user['title']. "<br>"; 
+			echo "<br><b>About:</b><br> " . $user['about'];
 
 			?>
 		</div>
+
 	</div>
 
 	<div class="main_group_column column" id="main_column">
 		<div style = "text-align: center" >
-		<input type='submit' name='post_message' class='info' id='create_group' data-toggle="modal" data-target="#create_group_div" value='Create New Group'>
+		<input type='submit' name='post_message' class='black-background danger' id='create_group' data-toggle="modal" data-target="#create_group_div" value='Create New Group'>
 		</div>
 	</div>
 
@@ -56,45 +53,38 @@ include("includes/header.php");
 
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="postModalLabel">Create New Group!</h4>
+	        <h3 class="modal-title" id="postModalLabel"><b>Create New Group!</b></h3>
 	      </div>
 
 	      <div class="modal-body">
 
 	      	<form class="create_group_form" action="" method="POST">
 	      		<div class="form-group" style="margin-top: -88px">
-	      		<table cellpadding="10" cellspacing="10" border="0">
-	      			<tr><td>Name:</td> 
-	      			<td><input type="text" name="group_name" placeholder="Group Name" required></td></tr>
+	      		<table class = "tg" border="0">
+	      			<tr><td class="tg-9hbo"><h4>Name: </h4></td> 
+	      			<td class="tg-yw4l"><input class="tg_creategroup" type="text" name="group_name" placeholder="Group Name" required></td></tr>
 					<br><br>
-					<tr><td>About:</td>
-	      			<td><textarea name="group_about" placeholder="Group About" required></textarea></td></tr>
+					<tr><td class="tg-9hbo"><h4>About: </h4></td>
+	      			<td class="tg-yw4l"><textarea class="tg_creategroup" name="group_about" placeholder="Group About" style="min-height: 100px;" required></textarea></td></tr>
 					<br><br>
-					<tr><td>Closed:</td>
-					<td>
-					<select name="group_closed" required>
+					<tr><td class="tg-9hbo"><h4>Closed: </h4></td>
+					<td class="tg-yw4l">
+					<select name="group_closed" class="tg_creategroup" required>
 						<option value = "yes">Yes</option>
 						<option value = "no">No</option>
 					</select>
 					</td></tr>
-					<br>
-					<tr><td>Genre: </td>
-					<td><select name="group_genre" required>
+					<br><br>
+					<tr><td class="tg-9hbo"><h4>Genre: </h4></td>
+					<td><select name="group_genre" class="tg_creategroup" required>
 						<option value = "Course">Course</option>
 						<option value = "Research">Research</option>
 						<option value = "Cultural">Cultural</option>
 						<option value = "Sports">Sports</option>
 						<option value = "Clubs">Clubs</option>
+						<option value = "Events">Events</option>
 					</select></td></tr>
 					<br>
-					<tr><td>Add Members: </td>
-					<td><select name="group_genre" required>
-						<option value = "Course">Course</option>
-						<option value = "Research">Research</option>
-						<option value = "Cultural">Cultural</option>
-						<option value = "Sports">Sports</option>
-						<option value = "Clubs">Clubs</option>
-					</select></td></tr>
 				</table>
 					<!-- <textarea class="form-control" name="post_body"></textarea> -->
 	      			<input type="hidden" name="group_owner" value="<?php echo $userLoggedIn; ?>">
@@ -106,7 +96,7 @@ include("includes/header.php");
 
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-danger" name="post_button" id="submit_create_group">Create Group</button>
+	        <button type="button" class="black-background danger" name="post_button" id="submit_create_group">Create Group</button>
 	      </div>
 		</div>
 	  </div>
@@ -115,7 +105,7 @@ include("includes/header.php");
 	
 	<div class="main_column column" id="main_column">
 		<div style = "text-align: center" >
-		<p><h3>Your Groups</h3></p>
+		<p><h3>All Groups</h3></p>
 		<hr>
 		<div class="groups_area">
 			<!-- <div class='status_post'>
