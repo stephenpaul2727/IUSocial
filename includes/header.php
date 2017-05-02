@@ -4,7 +4,7 @@ include("includes/classes/User.php");
 include("includes/classes/Post.php");
 include("includes/classes/Message.php");
 include("includes/classes/Notification.php");
-
+include("includes/classes/Groups.php");
 
 if (isset($_SESSION['username'])) {
 	$userLoggedIn = $_SESSION['username'];
@@ -40,7 +40,7 @@ else {
 	<script src="assets/js/bootstrap.js"></script>
 	<script src="assets/js/bootbox.min.js"></script>
 	<script src="assets/js/demo.js"></script>
-	<script src="assets/js/jquery.jcrop.js"></script>
+	<!-- <script src="assets/js/jquery.jcrop.js"></script> -->
 	<!-- <script src="assets/js/jcrop_bits.js"></script> -->
 
 
@@ -95,18 +95,32 @@ else {
 				//Unread notifications 
 				$user_obj = new User($con, $userLoggedIn);
 				$num_requests = $user_obj->getNumberOfFriendRequests();
+
+				//Unread notifications 
+				$group_obj = new Groups($con, $userLoggedIn, 'none');
+				$num_group_requests = $group_obj->getNumberOfGroupRequests();
+
 			?>
-
-
-			<a href="<?php echo $userLoggedIn; ?>">
+			<?php
+			if ($user['type']=='Student'){
+				echo '<a href="group.php?group_name=IU_Global_Forum"><i class="fa fa-forumbee fa-lg"></i>&nbsp;IU Global Forum</a>';
+				echo '&nbsp;&nbsp;&nbsp;&nbsp;';
+			}
+			?>
+			<a href="<?php echo "profile.php?profile_username=".$userLoggedIn; ?>">
 				<?php echo $user['first_name']; ?>
 			</a>
-      &nbsp;&nbsp;&nbsp;&nbsp;
+		    &nbsp;&nbsp;&nbsp;&nbsp;
 			<!-- Can replace the below texts as icons and vice versa-->
+
 			<a href="index.php">
 				<i class="fa fa-home fa-lg"></i>
 			</a>
-      &nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="groups_list.php">
+				<i class="fa fa-users fa-lg"></i>
+			</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;
 			<span ondblclick="window.location='messages.php'">
 			<a href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'message')">
 				<i class="fa fa-envelope fa-lg"></i>
@@ -116,7 +130,7 @@ else {
 				?>
 			</a>
 			</span>
-      &nbsp;&nbsp;&nbsp;&nbsp;
+		      &nbsp;&nbsp;&nbsp;&nbsp;
 			<!-- <a href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'message')">
 				<i class="fa fa-envelope fa-lg"></i>
 				<?php
@@ -131,19 +145,27 @@ else {
 				 echo '<span class="notification_badge" id="unread_notification">' . $num_notifications . '</span>';
 				?>
 			</a>
-      &nbsp;&nbsp;&nbsp;&nbsp;
+		      &nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="requests.php">
-				<i class="fa fa-users fa-lg"></i>
+				<i class="fa fa-user-plus fa-lg"></i>
 				<?php
 				if($num_requests > 0)
 				 echo '<span class="notification_badge" id="unread_requests">' . $num_requests . '</span>';
 				?>
 			</a>
-      &nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="group_requests.php">
+				<i class="fa fa-tags fa-lg"></i>
+				<?php
+				if($num_group_requests > 0)
+				 echo '<span class="notification_badge" id="unread_requests">' . $num_group_requests . '</span>';
+				?>
+			</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="settings.php">
 				<i class="fa fa-cog fa-lg"></i>
 			</a>
-      &nbsp;&nbsp;&nbsp;&nbsp;
+      		&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="includes/handlers/logout.php">
 				<i class="fa fa-sign-out fa-lg"></i>
 			</a>
