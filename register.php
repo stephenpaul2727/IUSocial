@@ -167,8 +167,8 @@ require 'includes/form_handlers/login_handler.php';
 					<br>
 					<?php if(in_array("Email already in use<br>", $error_array)) echo "Email already in use<br>"; 
 					else if(in_array("Invalid email format<br>", $error_array)) echo "Invalid email format<br>";
-					else if(in_array("Emails do not match<br>", $error_array)) echo "Emails do not match<br>"; ?>
-
+					else if(in_array("Emails do not match<br>", $error_array)) echo "Emails do not match<br>"; 
+					else if(in_array("Email should be an IU mail<br>", $error_array)) echo "Email should be an IU mail<br>";?>
 
 					<input type="password" name="reg_password" placeholder="Password" value="<?php 
 					if(isset($_SESSION['reg_pw'])) {
@@ -223,6 +223,7 @@ require 'includes/form_handlers/login_handler.php';
 		</div>
 
 	</div>
+
 
 </body>
 </html>
